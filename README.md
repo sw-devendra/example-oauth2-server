@@ -48,6 +48,14 @@ have enabled `password` grant types, let's try:
 Because this is an example, every user's password is `valid`. For now, you
 can read the source in example or follow the long boring tutorial below.
 
+**IMPORTANT**: [authlib](https://github.com/lepture/authlib) is being improved continuously. Default version of authlib in your environment may have some defects which are already fixed but not yet distributed. If some of your usecases do not work as expected, you can install the latest version of authlib from source repository and try again. For me, above example failed because of a bug in the default authlib in my environment. After struggling for two days, I found the bug in authlib and decided to fix it. When I checked the authlib repository to commit the fix, the bug had been already fixed 16 days ago with [this commit](https://github.com/lepture/authlib/commit/afa9e43544a3575b06d97df27971d5698152bbac)
+
+Steps to install latest version:
+1. git clone https://github.com/lepture/authlib.git 
+1. sudo pip install . 
+
+   (This will replace exisiting authlib version from system with development version. So this method is not recommended if your existing environment is working quite well and you do not want to take risk)
+
 **IMPORTANT**: To test implicit grant, you need to `token_endpoint_auth_method` to `none`.
 
 ## Preparation
