@@ -58,6 +58,44 @@ Steps to install latest version:
 
 **IMPORTANT**: To test implicit grant, you need to `token_endpoint_auth_method` to `none`.
 
+
+## Testing authorization code grant type
+
+### Step 1: Requesting authorization code
+Open following URL in any browser http://127.0.0.1:5000/oauth/authorize?client_id=CLIENT-ID&scope=profile&response_type=code&redirect_uris=REDIRECT-URI
+
+### Step 2: Getting authorization of user
+Login if needed, provide consent by clicking checkbox in login page and press submit.
+
+### Step 3: Receiving authorization code
+You will be redirected to the provided URI with code parameter like REDIRECT-URI?code=AUTHORIZATIO-CODE. Save the authorization code for next step.
+
+### Step 4: Exchanging authorization code with access token
+Following curl command can be used
+
+curl --request POST --url http://127.0.0.1:5000/oauth/token -F "grant_type=authorization_code" -F "client_id=CLIENT-ID" -F "client_secret=CLIENT-SECRET" -F "code=AUTHORIZATION-CODE" -F "redirect_uris=REDIRECT-URI"
+
+Alternatively you can open test/accesstoken_request.html in any browser and fill the form and submit request.
+
+### Step 5: Receiving Access Token
+Response from Step 4 will be in following form. Save the access token
+
+{"access_token": "ACCESS-TOKEN", "expires_in": 864000, "scope": "profile", "token_type": "Bearer"}
+
+
+### Step 6: Calling protected API
+In the example server there is only one API you can call it as following using curl command
+
+curl -H "Authorization: Bearer ACCESS-TOKEN" --url http://127.0.0.1:5000/api/me
+
+It will show result like following :
+
+{
+  "id": 1, 
+  "username": "a.devendra"
+}
+
+
 ## Preparation
 
 Assume this example doesn't exist at all. Let's write an OAuth 2.0 server
