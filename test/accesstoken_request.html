@@ -1,0 +1,23 @@
+<form action="http://127.0.0.1:5000/oauth/token" method="post">
+  <label>
+    <span>Client ID</span>
+    <input type="text" name="client_id">
+  </label>
+  <label>
+    <span>Client Secret</span>
+    <input type="text" name="client_secret">
+  </label>  
+  <label>
+    <span>Authorization Code</span>
+    <input type="text" name="code">
+  </label>   
+  <label>
+    <span>Redirect URI</span>
+    <input type="text" name="redirect_uris">
+  </label>
+   <label>
+    <span>Grant Type</span>
+    <input type="text" name="grant_type" value="authorization_code">
+  </label>
+  <button>Submit</button>
+</form>
